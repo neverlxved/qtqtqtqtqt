@@ -49,6 +49,7 @@ MainWindow::MainWindow(const QString &windowTitle, QWidget *parent) :
     label1->setText("\tДобро пожаловать в XnO!\n"
                     "Надеюсь вы хорошо проведете время!");
     label1->setStyleSheet("font-size: 18px, ");
+    label1->setAlignment(Qt::AlignCenter);
 
     setFixedSize(450, 550);
     setCentralWidget(centralWidget);
