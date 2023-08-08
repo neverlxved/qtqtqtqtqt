@@ -4,6 +4,8 @@
 
 #include "mainwindow.h"
 
+//int MainWindow::current_player = PLAYER_1;
+
 MainWindow::MainWindow(const QString &windowTitle, QWidget *parent) :
         QMainWindow(parent) ,
         centralWidget(new QWidget()),
@@ -67,7 +69,39 @@ MainWindow::MainWindow(const QString &windowTitle, QWidget *parent) :
     gridLayout->addWidget(btn9, 3, 2, 1, 1);
     gridLayout->addWidget(btnStart, 4, 0, 1, 3);
 
-
+    initConnections();
 }
 
+void MainWindow::initConnections() {
+    connect(btnStart, &QPushButton::clicked, this, &MainWindow::startGame);
+    connect(btn1, &QPushButton::clicked, this, &MainWindow::gameStep);
+    connect(btn2, &QPushButton::clicked, this, &MainWindow::gameStep);
+    connect(btn3, &QPushButton::clicked, this, &MainWindow::gameStep);
+    connect(btn4, &QPushButton::clicked, this, &MainWindow::gameStep);
+    connect(btn5, &QPushButton::clicked, this, &MainWindow::gameStep);
+    connect(btn6, &QPushButton::clicked, this, &MainWindow::gameStep);
+    connect(btn7, &QPushButton::clicked, this, &MainWindow::gameStep);
+    connect(btn8, &QPushButton::clicked, this, &MainWindow::gameStep);
+    connect(btn9, &QPushButton::clicked, this, &MainWindow::gameStep);
+}
 
+void MainWindow::startGame() {
+    label1->setText("Сейчас ход Игрока 1");
+    gameStarted = true;
+}
+
+void MainWindow::gameStep() {
+    if (!gameStarted) {
+        return;
+    }
+
+    if (current_player == 1) {
+        auto* btn = dynamic_cast<QPushButton*>(sender());
+        btn->setText("x");
+        current_player = PLAYER_2;
+    } else {
+        auto* btn = dynamic_cast<QPushButton*>(sender());
+        btn->setText("o");
+        current_player = PLAYER_1;
+    }
+}

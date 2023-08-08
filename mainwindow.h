@@ -8,6 +8,10 @@
 #include <QString>
 #include <QtGui>
 
+enum {
+    PLAYER_1 = 1,
+    PLAYER_2 = 2
+};
 
 class MainWindow : public QMainWindow {
 Q_OBJECT;
@@ -16,6 +20,11 @@ public:
     explicit MainWindow(const QString& windowTitle, QWidget* parent = nullptr);
 
 private:
+    bool gameStarted = false;
+    void initConnections();
+
+    int current_player = PLAYER_1;
+
     QWidget *centralWidget;
     QGridLayout *gridLayout;
 
@@ -38,7 +47,10 @@ private:
 
 private slots:
 
-};
+    void startGame();
 
+    void gameStep();
+
+};
 
 #endif //CALCULATOR_MAINWINDOW_H
