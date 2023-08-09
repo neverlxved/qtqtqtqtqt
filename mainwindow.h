@@ -22,8 +22,17 @@ public:
 private:
     bool gameStarted = false;
     void initConnections();
+    void initButtons();
+    void addStyles();
+    bool availibleTurns = true;
+    void checkTurns();
+    void checkStat();
+    void getWinner();
+
 
     int current_player = PLAYER_1;
+
+    int p1,p2,ties;
 
     QWidget *centralWidget;
     QGridLayout *gridLayout;
@@ -42,6 +51,7 @@ private:
     QPushButton *btnStart;
 
     QLabel *label1;
+    QLabel *Statistics;
 
 
 
